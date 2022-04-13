@@ -2,21 +2,16 @@ package com.exampleFacade.facade.models;
 
 import com.exampleFacade.facade.InvoiceFacade;
 
-public class Store implements InvoiceFacade {
+public class Store {
 
     private Double tax = 0.1;
+    InvoiceFacade invoiceFacade = new InvoiceFacade();
 
     public Store() {
     }
 
     public Invoice generateInvoice( Client client ) {
-        Invoice invoice =  new Invoice(
-                client.getName(),
-                client.getShoppingKart(),
-                this.tax
-        );
-
-        invoice.calculateTotalPrice();
+        var invoice = invoiceFacade.writingInvoice(client, tax);
         return invoice;
     };
 }
